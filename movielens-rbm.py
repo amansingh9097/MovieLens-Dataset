@@ -37,3 +37,19 @@ def convert(data):
     return new_data
 training_set = convert(training_set)
 test_set = convert(test_set)
+
+# Converting the data into Torch tensors
+training_set = torch.FloatTensor(training_set)
+test_set = torch.FloatTensor(test_set)
+
+# Converting the ratings into binary ratings 1 (Liked) or 0 (Not Liked)
+training_set[training_set == 0] = -1
+training_set[training_set == 1] = 0
+training_set[training_set == 2] = 0
+training_set[training_set >= 3] = 1
+test_set[test_set == 0] = -1
+test_set[test_set == 1] = 0
+test_set[test_set == 2] = 0
+test_set[test_set >= 3] = 1
+
+#todo :Creating the architecture of the Neural Network, train the model and test the model
